@@ -162,16 +162,16 @@ fi
 if is_enabled CONFIG_ARCH_ROCKCHIP; then
         mkdir -p "$tmpdir/boot/extlinux"
         echo "label ${RK_KERNEL_DTS} linux-$version" > $tmpdir/boot/extlinux/extlinux.conf
-        echo -e "\tkernel /Image-$version" >> $tmpdir/boot/extlinux/extlinux.conf
+        echo "\tkernel /Image-$version" >> $tmpdir/boot/extlinux/extlinux.conf
         if [ -f "$tmpdir/usr/lib/$packagename/rockchip/${RK_KERNEL_DTS}.dtb" ]; then
                 cp "$tmpdir/usr/lib/$packagename/rockchip/${RK_KERNEL_DTS}.dtb" "$tmpdir/boot/"
                 ln -s ${RK_KERNEL_DTS}.dtb $tmpdir/boot/rk-kernel.dtb
-                echo -e "\tfdt /${RK_KERNEL_DTS}.dtb" >> $tmpdir/boot/extlinux/extlinux.conf
+                echo "\tfdt /${RK_KERNEL_DTS}.dtb" >> $tmpdir/boot/extlinux/extlinux.conf
         fi
         cp logo.bmp logo_kernel.bmp $tmpdir/boot/ || true
         if [ -e "ramdisk.img" ]; then
                 cp "ramdisk.img" "$tmpdir/boot/initrd-$version"
-                echo -e "\tinitrd /initrd-$version" >> $tmpdir/boot/extlinux/extlinux.conf
+                echo "\tinitrd /initrd-$version" >> $tmpdir/boot/extlinux/extlinux.conf
         fi
 fi
 
