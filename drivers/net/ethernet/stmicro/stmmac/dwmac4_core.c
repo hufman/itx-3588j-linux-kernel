@@ -436,7 +436,7 @@ static int dwmac4_write_vlan_filter(struct net_device *dev,
 
 	netdev_err(dev, "Timeout accessing MAC_VLAN_Tag_Filter\n");
 
-	return -EBUSY;
+	return 0;
 }
 
 static int dwmac4_add_hw_vlan_rx_fltr(struct net_device *dev,
@@ -452,8 +452,8 @@ static int dwmac4_add_hw_vlan_rx_fltr(struct net_device *dev,
 
 	if (hw->promisc) {
 		netdev_err(dev,
-			   "Adding VLAN in promisc mode not supported\n");
-		return -EPERM;
+			   "Adding VLAN (%u) in promisc mode not supported\n", vid);
+		//return -EPERM;
 	}
 
 	/* Single Rx VLAN Filter */
@@ -507,8 +507,8 @@ static int dwmac4_del_hw_vlan_rx_fltr(struct net_device *dev,
 
 	if (hw->promisc) {
 		netdev_err(dev,
-			   "Deleting VLAN in promisc mode not supported\n");
-		return -EPERM;
+			   "Deleting VLAN (%u) in promisc mode not supported\n", vid);
+		//return -EPERM;
 	}
 
 	/* Single Rx VLAN Filter */
