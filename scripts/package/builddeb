@@ -173,6 +173,8 @@ if is_enabled CONFIG_ARCH_ROCKCHIP; then
                 cp "ramdisk.img" "$tmpdir/boot/initrd-$version"
                 echo "\tinitrd /initrd-$version" >> $tmpdir/boot/extlinux/extlinux.conf
         fi
+        echo "\tappend root=/dev/disk/by-label/debian_root systemd.unified_cgroup_hierarchy=false" >> $tmpdir/boot/extlinux/extlinux.conf
+
 fi
 
 if is_enabled CONFIG_MODULES; then
